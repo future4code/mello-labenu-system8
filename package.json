@@ -1,0 +1,27 @@
+{
+  "name": "mello-labenu-system8",
+  "version": "1.0.0",
+  "description": "Você estuda na Labenu_ há tanto tempo que já parecem anos, não é? Então, hoje, vamos pedir para criar um sistema que represente o básico da nossa organização.",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node ./src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/future4code/mello-labenu-system8.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/future4code/mello-labenu-system8/issues"
+  },
+  "homepage": "https://github.com/future4code/mello-labenu-system8#readme",
+  "dependencies": {
+    "@types/node": "^14.0.27",
+    "moment": "^2.27.0",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.7"
+  }
+}
