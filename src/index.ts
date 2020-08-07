@@ -19,6 +19,8 @@ try{
     console.log("Erro ao ler a base de dados: " + error)
 }
 
+console.log(process.cwd());
+
 /* CreateTeacher */
 
 function createTeacher(): Teacher {
@@ -57,6 +59,15 @@ function createTeacher(): Teacher {
     process.argv[5],
     newSpecialties
   );
+
+  const fileManager: FileManager = new FileManager("teachers.json");
+
+  fileManager.setFilePath("teachers.json");
+
+  const teachers = fileManager.readFile();
+  teachers.push(newTeacher);
+  fileManager.writeFile(teachers);
+
   console.log(newTeacher);
   return newTeacher;
 }
@@ -65,23 +76,28 @@ function createTeacher(): Teacher {
 
 function createStudent(): Student {
   const birthDate: moment.Moment = moment(process.argv[6], "DD/MM/YYYY");
-  const hobbies: string[] = [];
-  hobbies.push(process.argv[7], process.argv[8], process.argv[9]);
+  const newHobbies: string[] = [];
+  const hobbiesList = process.argv.slice(7);
+
+  for (let hobbie of hobbiesList) {
+    newHobbies.push(hobbie);
+  }
 
   const newStudent: Student = new Student(
     process.argv[3],
     process.argv[4],
     process.argv[5],
     birthDate,
-    hobbies
+    newHobbies
   );
 
-  /*   const fileManager: FileManager = new FileManager("./../students.json");
+  const fileManager: FileManager = new FileManager("students.json");
+  fileManager.setFilePath("students.json");
 
-  fileManager.setFilePath("./../students.json");
+  const students = fileManager.readFile();
+  students.push(newStudent);
+  fileManager.writeFile(students);
 
-  fileManager.writeFile(newStudent);
- */
   console.log(newStudent);
 
   return newStudent;
