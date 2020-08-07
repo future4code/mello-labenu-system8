@@ -1,0 +1,23 @@
+[
+  {
+    "id": "2",
+    "name": "Camila",
+    "email": "camila@gmail.com",
+    "birthDate": "1998-03-05T03:00:00.000Z",
+    "hobbies": [
+      "ler",
+      "caminhar",
+      "nadar"
+    ]
+  },
+  {
+    "id": "1",
+    "name": "Astrodev",
+    "email": "astrodev@gmail.com",
+    "birthDate": "2000-07-30T03:00:00.000Z",
+    "hobbies": [
+      "ler",
+      "caminhar"
+    ]
+  }
+]

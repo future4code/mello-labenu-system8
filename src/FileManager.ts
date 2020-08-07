@@ -8,24 +8,20 @@ export class FileManager {
   }
 
   public writeFile(data: any): void {
-    fs.writeFileSync(this.filePath, JSON.stringify(data));
+    try {
+      fs.writeFileSync(this.filePath, JSON.stringify(data, null, 2));
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   public readFile(): any {
-    const data = fs.readFileSync(this.filePath);
-    return JSON.parse(data.toString());
+    try {
+      const data = fs.readFileSync(this.filePath);
+      return JSON.parse(data.toString());
+    } catch (error) {
+      console.log(error);
+      return [];
+    }
   }
 }
-
-const fm = new FileManager("arquivo");
-
-// imprime as infos do arquivo
-console.log(fm.readFile());
-
-fm.setFilePath("outro-arquivo");
-
-// escreve no arquivo
-fm.writeFile({
-  id: "1",
-  name: "Goli",
-});
