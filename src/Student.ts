@@ -10,8 +10,14 @@ export class Student implements User {
     public hobbies: string[]
   ) {}
 
-  public getAge(): number {
-    return moment().diff(this.birthDate, "months");
+  public getAgeById(students: any , id : string): void {
+    const now=moment()
+    students.forEach((item: any, i: number, array:any ) => {
+        if(item.id=== id){
+        	const ageOfStudent =now.diff(item.birthDate, "years")
+        	console.log(`A idade de ${item.name} é ${ageOfStudent} anos`) 	 
+        }
+    });
   }
 
   public getHobbies(): string[] {

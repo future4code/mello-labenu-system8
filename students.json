@@ -1,0 +1,16 @@
+[
+    {
+        "id": "1",
+        "name": "João",
+        "email":" 'jão@gmail",
+        "birthDate": "23/08/1993",
+        "hobbies": []
+    },
+    {
+        "id": "2",
+        "name": "Luisa",
+        "email":" 'luisa@gmail",
+        "birthDate": "03/04/1994",
+        "hobbies": []
+    }
+]

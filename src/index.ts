@@ -3,8 +3,21 @@ import { Student } from "./Student";
 import { FileManager } from "./FileManager";
 
 import { NightMission } from "./NightMission";
+import * as fs from 'fs'
 import moment from "moment";
 import { Teacher, TEACHER_SPECIALTY } from "./Teacher";
+
+/*Lendo arquivo json*/
+
+const fileData: string = fs.readFileSync('./students.json').toString()
+let students: any;
+
+try{
+    students= JSON.parse(fileData)
+}catch (error){
+    students=[] 
+    console.log("Erro ao ler a base de dados: " + error)
+}
 
 /* CreateTeacher */
 
@@ -83,6 +96,14 @@ const nightMission: NightMission = new NightMission(
   2
 );
 
+const newStudent: Student = new Student(
+  '3',
+  'Laura',
+  'laura@gmail',
+  moment('07/02/1991', 'DD/MM/YYYY'),
+  ['Correr', 'Nadar']
+)
+
 /* Switch case para chamar as funções */
 
 const action: string = process.argv[2];
@@ -97,6 +118,10 @@ switch (action) {
   case "addTeacher":
     const newTeacher = createTeacher();
     nightMission.addTeacher(newTeacher);
+    break;  
+  case "getAgeById":
+    newStudent.getAgeById(students, process.argv[3]);
+    console.log()
     break;
   default:
     console.log("Operação inválida");
