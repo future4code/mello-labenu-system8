@@ -35,6 +35,7 @@ export abstract class Mission {
 
   public addTeacher(teacher: Teacher) {
     this.teachers.push(teacher);
+    console.log('Professor adicionado')
   }
 
   public addStudent(student: Student) {
