@@ -1,3 +1,3 @@
 import { Mission } from "./Mission";
 
-class FullTimeMission extends Mission {}
+export class FullTimeMission extends Mission {}
