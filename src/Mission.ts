@@ -46,3 +46,4 @@ export abstract class Mission {
     this.name = name;
   }
 }
+

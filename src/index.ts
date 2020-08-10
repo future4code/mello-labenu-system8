@@ -6,6 +6,7 @@ import { NightMission } from "./NightMission";
 import * as fs from 'fs'
 import moment from "moment";
 import { Teacher, TEACHER_SPECIALTY } from "./Teacher";
+import { FullTimeMission } from "./FullTimeMission";
 
 function ReadStudentsFile(): any {
   const fileData: string = fs.readFileSync('./students.json').toString()
@@ -185,4 +186,47 @@ switch (action) {
     console.log("Operação inválida");
     break;
 }
+
+/* Criando nova turma INTEGRAL e adicionando aluno */
+let student: Student [] = []
+let teacher: Teacher [] = []
+
+const fm = new FileManager(
+  "./mission.json"
+)
+
+const mission1: FullTimeMission = new FullTimeMission(
+  "I01",
+  moment("07/12/2019", "DD/MM/YYYY"),
+  moment("14/05/2020", "DD/MM/YYYY"),
+  teacher,
+  student,
+);
+
+let b: any = mission1.setName("Mello-I")
+let a: any = [...student, b]
+student.push(fm.readFile())
+student.push(a)
+fm.writeFile(student)
+
+/* Criando nova turma NOTURNA e adicionando aluno */
+let studentNight: Student [] = []
+let teacherNight: Teacher [] = []
+
+studentNight.push(newStudent)
+
+const mission2: NightMission = new NightMission(
+  "N01",
+  moment("22/12/2019", "DD/MM/YYYY"),
+  moment("21/11/2020", "DD/MM/YYYY"),
+  teacherNight,
+  studentNight,
+);
+
+mission2.setName("Mello-N")
+student.push(fm.readFile())
+student.push(newStudent)
+fm.writeFile(student)
+
+
 
