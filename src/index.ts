@@ -7,16 +7,67 @@ import * as fs from 'fs'
 import moment from "moment";
 import { Teacher, TEACHER_SPECIALTY } from "./Teacher";
 
-/*Lendo arquivo json*/
+function ReadStudentsFile(): any {
+  const fileData: string = fs.readFileSync('./students.json').toString()
+  let students: any;  
+  try{
+      students= JSON.parse(fileData)
+      return students
+  }catch (error){
+      students=[] 
+      console.log("Erro ao ler a base de dados: " + error)
+  }
+}
 
-const fileData: string = fs.readFileSync('./students.json').toString()
-let students: any;
+function ReadMissionsFile(): any {
+  const fileData: string = fs.readFileSync('./missions.json').toString()
+  let missions: any;  
+  try{
+      missions= JSON.parse(fileData)
+      return missions
+  }catch (error){
+      missions=[] 
+      console.log("Erro ao ler a base de dados: " + error)
+  }
+}
 
-try{
-    students= JSON.parse(fileData)
-}catch (error){
-    students=[] 
-    console.log("Erro ao ler a base de dados: " + error)
+/*Add teacher to mision */
+function addTeacherToMission(missionName: string, teacherName:string ): any{
+  const teachers= ReadMissionsFile()
+  let teacherChoiced = teachers
+  
+  teachers.forEach((item: any, i: number, array:any ) => {
+    if(teacherName === item.name){
+      teacherChoiced = item
+      console.log(teacherChoiced)
+      return teacherChoiced
+    }
+  })
+
+  const missions= ReadMissionsFile()
+  let missionChoiced = missions
+
+  missions.forEach((item: any, i: number, array:any ) => {
+    if(missionName === item.name){
+      missionChoiced = item
+      console.log(missionChoiced)
+      return missionChoiced
+    }
+  })
+
+  const nightMission: NightMission = new NightMission(
+    missionChoiced.id,
+    missionChoiced.startDate,
+    missionChoiced.endDate,
+    missionChoiced.teachers,
+    missionChoiced.students,
+    missionChoiced.currentModule
+  );
+
+  const newTeacher = createTeacher();
+  nightMission.addTeacher(newTeacher);
+  console.log(`O professor ${teacherName} foi adicionado a turma ${missionName}`)
+  
 }
 
 console.log(process.cwd());
@@ -103,15 +154,6 @@ function createStudent(): Student {
   return newStudent;
 }
 
-const nightMission: NightMission = new NightMission(
-  "Julian",
-  moment("22/06/2020", "DD/MM/YYYY"),
-  moment("22/12/2020", "DD/MM/YYYY"),
-  [],
-  [],
-  2
-);
-
 const newStudent: Student = new Student(
   '3',
   'Laura',
@@ -132,10 +174,10 @@ switch (action) {
     createTeacher();
     break;
   case "addTeacher":
-    const newTeacher = createTeacher();
-    nightMission.addTeacher(newTeacher);
+    addTeacherToMission(process.argv[3], process.argv[4])
     break;  
   case "getAgeById":
+    const students=ReadStudentsFile()
     newStudent.getAgeById(students, process.argv[3]);
     console.log()
     break;
@@ -143,3 +185,4 @@ switch (action) {
     console.log("Operação inválida");
     break;
 }
+

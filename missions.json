@@ -1,0 +1,39 @@
+[
+    {
+        "name": "Newton",
+        "id": "1",
+        "startDate": "moment.Moment",
+        "endDate": "moment.Moment",
+        "teachers": [],
+        "students": [],
+        "currentModule": "6"
+    },
+    {
+        "name": "Bouman",
+        "id": "2",
+        "startDate": "moment.Moment",
+        "endDate": "moment.Moment",
+        "teachers": [],
+        "students": [],
+        "currentModule": "5"
+    },
+    {
+        "name": "Sagan",
+        "id": "3",
+        "startDate": "moment.Moment",
+        "endDate": "moment.Moment",
+        "teachers": [],
+        "students": [],
+        "currentModule": "4"
+    },
+    {
+        "name": "Julian",
+        "id": "4",
+        "startDate": "moment.Moment",
+        "endDate": "moment.Moment",
+        "teachers": [],
+        "students": [],
+        "currentModule": "3"
+    }
+]
+
